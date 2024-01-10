@@ -29,6 +29,8 @@ db.once("open", () => console.log("Database Connected"));
 app.use(express.json()); // for parsing application/json request
 app.use(cors());
 
+// Routes
+
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
