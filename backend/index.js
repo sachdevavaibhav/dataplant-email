@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+import scheduleRoutes from './routes/schedule.js'
+
 import dotenv from 'dotenv';
 dotenv.config()
 
@@ -30,6 +32,7 @@ app.use(express.json()); // for parsing application/json request
 app.use(cors());
 
 // Routes
+app.use("/api/v1", scheduleRoutes);
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
