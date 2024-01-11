@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { createSchedule, getSchedules, getScheduleById } from "../controllers/schedule.js";
+import { createSchedule, getSchedules, getScheduleById, deleteSchedule } from "../controllers/schedule.js";
 
 router.get("/schedule", getSchedules);
 
@@ -12,8 +12,6 @@ router.patch("/schedule/:id", async (req, res) => {
 
 });
 
-router.delete("/schedule/:id", async (req, res) => {
-
-});
+router.delete("/schedule/:id", deleteSchedule);
 
 export default router;

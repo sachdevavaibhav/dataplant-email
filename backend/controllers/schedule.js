@@ -14,6 +14,10 @@ export const getSchedules = asyncHandler(async (req, res) => {
     else {
         schedules = await Schedule.find({});
     };
+    if (!schedules) {
+        res.status(404);
+        throw new Error("schedules not found");
+    }
     const response = generateResponse(200, schedules, "schedules fetched successfully", true);
     res.status(200).json(response);
 });
@@ -21,6 +25,10 @@ export const getSchedules = asyncHandler(async (req, res) => {
 export const getScheduleById = asyncHandler(async (req, res) => {
     const {id} = req.params;
     const schedule = await Schedule.findById(id);
+    if (!schedule) {
+        res.status(404);
+        throw new Error("schedule not found");
+    }
     const response = generateResponse(200, schedule, "schedule fetched successfully", true);
     res.status(200).json(response);
 });
@@ -78,8 +86,23 @@ export const createSchedule = asyncHandler(async (req, res) => {
         time: time
     })
 
-    await newSchedule.save();
+    const savedSchedule = await newSchedule.save();
+    if (!savedSchedule) {
+        res.status(500);
+        throw new Error("schedule not saved");
+    }
 
-    const response = generateResponse(200, newSchedule, "schedule created successfully", true);
+    const response = generateResponse(200, savedSchedule, "schedule created successfully", true);
+    res.status(200).json(response);
+});
+
+export const deleteSchedule = asyncHandler(async (req, res) => {
+    const {id} = req.params;
+    const schedule = await Schedule.findByIdAndDelete(id);
+    if (!schedule) {
+        res.status(404);
+        throw new Error("schedule not found");
+    }
+    const response = generateResponse(200, schedule, "schedule deleted successfully", true);
     res.status(200).json(response);
 });
