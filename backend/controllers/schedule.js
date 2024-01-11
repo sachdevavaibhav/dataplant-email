@@ -3,7 +3,62 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { generateResponse } from "../utils/generateResponse.js";
 import { FREQUENCY, WEEKLY_REPEAT, MONTHLY_REPEAT } from "../utils/constants.js";
 
+const validateSchedule = (schedule) => {
+    const {
+        title,
+        desc,
+        subject,
+        frequency,
+        repeat,
+        time
+    } = schedule;
 
+    if (!title || !desc || !subject || !frequency || !time) {
+        return {
+            isValid: false,
+            message: "title, desc, subject, frequency and time fields are required"
+        }
+    };
+
+    if ((frequency === "weekly" || frequency === "monthly") && !repeat) {
+        return {
+            isValid: false,
+            message: "repeat field is required"
+        }
+    };
+
+    if (!FREQUENCY.includes(frequency)) {
+        return {
+            isValid: false,
+            message: "invalid frequency value"
+        }
+    };
+
+    if (frequency === "weekly" && !WEEKLY_REPEAT.includes(repeat)) {
+        return {
+            isValid: false,
+            message: "invalid repeat value"
+        }
+    }
+    else if (frequency === "monthly" && !MONTHLY_REPEAT.includes(repeat)) {
+        return {
+            isValid: false,
+            message: "invalid repeat value"
+        }
+    };
+
+    if (frequency === "daily" && repeat) {
+        return {
+            isValid: false,
+            message: "repeat field is not required for daily frequency"
+        }
+    };
+
+    return {
+        isValid: true,
+        message: ""
+    }
+};
 
 export const getSchedules = asyncHandler(async (req, res) => {
     const {search} = req.query;
@@ -43,38 +98,16 @@ export const createSchedule = asyncHandler(async (req, res) => {
         time
     } = req.body;
 
-    if (!title || !desc || !subject || !frequency || !time) {
-        res.status(400);
-        throw new Error("title, desc, subject, frequency and time fields are required");
-    };
-
     // remove any whitespace from the beginning and end of the title, desc and subject
-    title.trim();
-    desc.trim();
-    subject.trim();
+    title = title.trim();
+    desc = desc.trim();
+    subject = subject.trim();
 
-    if ((frequency === "weekly" || frequency === "monthly") && !repeat) {
-        res.status(400);
-        throw new Error("repeat field is required");
-    };
+    const validation = validateSchedule({title, desc, subject, frequency, repeat, time});
 
-    if (!FREQUENCY.includes(frequency)) {
+    if (!validation.isValid) {
         res.status(400);
-        throw new Error("invalid frequency value");
-    };
-
-    if (frequency === "weekly" && !WEEKLY_REPEAT.includes(repeat)) {
-        res.status(400);
-        throw new Error("invalid repeat value");
-    }
-    else if (frequency === "monthly" && !MONTHLY_REPEAT.includes(repeat)) {
-        res.status(400);
-        throw new Error("invalid repeat value");
-    };
-
-    if (frequency === "daily" && repeat) {
-        res.status(400);
-        throw new Error("repeat field is not required for daily frequency");
+        throw new Error(validation.message);
     };
 
     const newSchedule = new Schedule({
@@ -94,6 +127,48 @@ export const createSchedule = asyncHandler(async (req, res) => {
 
     const response = generateResponse(200, savedSchedule, "schedule created successfully", true);
     res.status(200).json(response);
+});
+
+export const updateSchedule = asyncHandler(async (req, res) => {
+    const {id} = req.params;
+    let {
+        title,
+        desc,
+        subject,
+        frequency,
+        repeat,
+        time
+    } = req.body;
+
+    // remove any whitespace from the beginning and end of the title, desc and subject
+    title = title.trim();
+    desc = desc.trim();
+    subject = subject.trim();
+
+    const validation = validateSchedule({title, desc, subject, frequency, repeat, time});
+
+    if (!validation.isValid) {
+        res.status(400);
+        throw new Error(validation.message);
+    };
+
+    const updatedSchedule = await Schedule.findByIdAndUpdate(id, {
+        title: title,
+        desc: desc,
+        subject: subject,
+        frequency: frequency,
+        repeat: repeat,
+        time: time
+    }, {new: true, runValidators: true});
+
+    if (!updatedSchedule) {
+        res.status(500);
+        throw new Error("schedule not updated");
+    }
+
+    const response = generateResponse(200, updatedSchedule, "schedule updated successfully", true);
+    res.status(200).json(response);
+
 });
 
 export const deleteSchedule = asyncHandler(async (req, res) => {
