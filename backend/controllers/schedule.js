@@ -89,12 +89,12 @@ export const getScheduleById = asyncHandler(async (req, res) => {
 });
 
 export const createSchedule = asyncHandler(async (req, res) => {
-    const {
+    let {
         title,
         desc,
         subject,
         frequency,
-        repeat,
+        repeat=null,
         time
     } = req.body;
 
@@ -126,7 +126,7 @@ export const createSchedule = asyncHandler(async (req, res) => {
     }
 
     const response = generateResponse(200, savedSchedule, "schedule created successfully", true);
-    res.status(200).json(response);
+    res.status(201).json(response);
 });
 
 export const updateSchedule = asyncHandler(async (req, res) => {
@@ -136,7 +136,7 @@ export const updateSchedule = asyncHandler(async (req, res) => {
         desc,
         subject,
         frequency,
-        repeat,
+        repeat=null,
         time
     } = req.body;
 

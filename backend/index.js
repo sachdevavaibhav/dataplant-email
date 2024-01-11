@@ -32,7 +32,7 @@ app.use(express.json()); // for parsing application/json request
 app.use(cors());
 
 // Routes
-app.use("/api/v1", scheduleRoutes);
+app.use("/api/v1/schedules", scheduleRoutes);
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);

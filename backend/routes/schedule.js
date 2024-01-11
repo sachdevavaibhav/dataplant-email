@@ -2,14 +2,14 @@ import express from "express";
 const router = express.Router();
 import { createSchedule, getSchedules, getScheduleById, deleteSchedule, updateSchedule } from "../controllers/schedule.js";
 
-router.get("/schedule", getSchedules);
+router.get("/", getSchedules);
 
-router.get("/schedule/:id", getScheduleById);
+router.get("/:id", getScheduleById);
 
-router.post("/schedule", createSchedule);
+router.post("/", createSchedule);
 
-router.patch("/schedule/:id", updateSchedule);
+router.patch("/:id", updateSchedule);
 
-router.delete("/schedule/:id", deleteSchedule);
+router.delete("/:id", deleteSchedule);
 
 export default router;
