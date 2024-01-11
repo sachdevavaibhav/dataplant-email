@@ -1,12 +1,10 @@
 import express from "express";
 const router = express.Router();
-import { createSchedule, getSchedules } from "../controllers/schedule.js";
+import { createSchedule, getSchedules, getScheduleById } from "../controllers/schedule.js";
 
 router.get("/schedule", getSchedules);
 
-router.get("/schedule/:id", async (req, res) => {
-
-});
+router.get("/schedule/:id", getScheduleById);
 
 router.post("/schedule", createSchedule);
 

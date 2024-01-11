@@ -1,10 +1,9 @@
 import Schedule from "../models/schedule.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { generateResponse } from "../utils/generateResponse.js";
+import { FREQUENCY, WEEKLY_REPEAT, MONTHLY_REPEAT } from "../utils/constants.js";
 
-const FREQUENCY = ["daily", "weekly", "monthly"];
-const WEEKLY_REPEAT = ['mon', 'tues', 'wed', 'thurs', 'fri', 'sat', 'sun'];
-const MONTHLY_REPEAT = ['last_fri', 'first_mon'];
+
 
 export const getSchedules = asyncHandler(async (req, res) => {
     const {search} = req.query;
@@ -14,11 +13,17 @@ export const getSchedules = asyncHandler(async (req, res) => {
     }
     else {
         schedules = await Schedule.find({});
-    }
+    };
     const response = generateResponse(200, schedules, "schedules fetched successfully", true);
     res.status(200).json(response);
 });
 
+export const getScheduleById = asyncHandler(async (req, res) => {
+    const {id} = req.params;
+    const schedule = await Schedule.findById(id);
+    const response = generateResponse(200, schedule, "schedule fetched successfully", true);
+    res.status(200).json(response);
+});
 
 export const createSchedule = asyncHandler(async (req, res) => {
     const {
@@ -77,4 +82,4 @@ export const createSchedule = asyncHandler(async (req, res) => {
 
     const response = generateResponse(200, newSchedule, "schedule created successfully", true);
     res.status(200).json(response);
-})
+});
