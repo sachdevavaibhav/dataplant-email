@@ -5,9 +5,9 @@ export const getScheduleString = (frequency: string, repeat: string, time: Date)
 
     const REPEAT = {
         'mon': 'Monday',
-        'tue': 'Tuesday',
+        'tues': 'Tuesday',
         'wed': 'Wednesday',
-        'thu': 'Thursday',
+        'thurs': 'Thursday',
         'fri': 'Friday',
         'sat': 'Saturday',
         'sun': 'Sunday',

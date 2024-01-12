@@ -1,5 +1,6 @@
 import editIcon from '../../../assets/icons/edit.svg';
 import deleteIcon from '../../../assets/icons/delete.svg';
+import DeleteModal from './DeleteModal';
 
 interface ITable {
     data: {
@@ -7,11 +8,19 @@ interface ITable {
         desc: string,
         subject: string,
         schedule: string,
-        id: string
+        id: string,
+    }[] | null,
+    setSchedules: React.Dispatch<React.SetStateAction<null>>,
+    schedules: {
+        title: string,
+        desc: string,
+        subject: string,
+        schedule: string,
+        id: string,
     }[] | null
 }
 
-function Table({data: data=[]}: ITable) {
+function Table({data: data=[], setSchedules, schedules}: ITable) {
     return (
         <div className="overflow-x-auto">
             <table className="table font-nunito">
@@ -43,8 +52,9 @@ function Table({data: data=[]}: ITable) {
                                     <div role="button">
                                         <img src={editIcon} alt="edit" />
                                     </div>
-                                    <div role="button">
+                                    <div role="button" onClick={() => (document?.getElementById(item.id) as HTMLDialogElement)?.showModal()}>
                                         <img src={deleteIcon} alt="delete" />
+                                        <DeleteModal id={item.id} title={item.title} setSchedules={setSchedules} schedules={schedules} />
                                     </div>
                                 </div>
                             </td>

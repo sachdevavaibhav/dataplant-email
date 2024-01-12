@@ -19,3 +19,16 @@ export async function getSchedulesByTitle(title: string) {
         console.log(error);
     }
 }
+
+export const deleteSchedule = async (id: string) => {
+    try {
+        const response = await fetch(`${BASE_URL}/schedules/${id}`, {
+            method: 'DELETE',
+        });
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};

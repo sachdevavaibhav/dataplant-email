@@ -54,7 +54,7 @@ function SchedulerDashboard() {
                     </div>
                     {!isDataLoaded ? <TableShimmer />:
                         (schedules?.length || 0) <= 0 ? <div>No Schedule found</div> :
-                        <Table data={schedules} />
+                        <Table data={schedules} schedules={schedules} setSchedules={setSchedules} />
                     }
                 </div>
             </DashboardWrapper>
