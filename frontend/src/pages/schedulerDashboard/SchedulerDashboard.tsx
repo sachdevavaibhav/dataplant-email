@@ -7,6 +7,8 @@ import { useFetchSchedules } from "./hooks/useFetchSchedules";
 import { getSchedulesByTitle } from "../../utils/apiMethods";
 import { getScheduleString } from "./utils/getScheduleString";
 import searchIcon from '../../assets/icons/search.svg';
+import addIcon from '../../assets/icons/add.svg';
+import Button from "../../components/button/Button";
 
 function SchedulerDashboard() {
     const [schedules, setSchedules] = useFetchSchedules();
@@ -41,7 +43,14 @@ function SchedulerDashboard() {
                 <div className="px-8">
                     <div className="flex justify-between pt-5 mb-8">
                         <Input placeholder="Search" classes="w-96" icon={searchIcon} onChangeHandler={handleChange} />
-                        <div>Add</div>
+                        <Button classes="btn-primary font-semibold text-white border-[#E4E4EE] px-6 py-0"
+                            onClick={() => console.log('clicked')}
+                        >
+                            <div className="flex items-center gap-2 w-full">
+                                <img width={22} height={22} src={addIcon} alt="add" />
+                                <span>Add</span>
+                            </div>
+                        </Button>
                     </div>
                     {!isDataLoaded ? <TableShimmer />:
                         (schedules?.length || 0) <= 0 ? <div>No Schedule found</div> :
