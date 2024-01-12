@@ -2,66 +2,6 @@ import Table from "./components/Table";
 import DashboardWrapper from "./components/DashboardWrapper";
 import { useFetchSchedules } from "./hooks/useFetchSchedules";
 
-// const data = [
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id1'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id2'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id3'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id4'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id5'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id6'
-//     },
-//     {
-//         title: 'Title',
-//         desc: 'Description',
-//         subject: 'Subject',
-//         schedule: 'Schedule',
-//         id: 'id7'
-//     },
-
-// ]
-
 function SchedulerDashboard() {
     const [schedules] = useFetchSchedules();
     return (
