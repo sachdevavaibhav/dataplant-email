@@ -15,7 +15,7 @@ function Input({placeholder, classes, onChangeHandler, icon  ,...props}: IInput)
                     <img src={icon} aria-hidden={true} className='w-full' />
                 </div>
             }
-            <input type="text" placeholder={placeholder} className={classes} {...props} />
+            <input type="text" placeholder={placeholder} className={classes} onChange={onChangeHandler} {...props} />
         </div>
     )
 }

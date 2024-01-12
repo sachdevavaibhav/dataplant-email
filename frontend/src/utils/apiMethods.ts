@@ -9,3 +9,13 @@ export async function getAllSchedules() {
         console.log(error);
     }
 };
+
+export async function getSchedulesByTitle(title: string) {
+    try {
+        const response = await fetch(`${BASE_URL}/schedules?search=${title}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}

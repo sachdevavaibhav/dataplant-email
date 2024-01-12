@@ -8,7 +8,7 @@ interface ITable {
         subject: string,
         schedule: string,
         id: string
-    }[]
+    }[] | null
 }
 
 function Table({data: data=[]}: ITable) {
