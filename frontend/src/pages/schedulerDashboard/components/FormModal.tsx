@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "../../../components/input/Input";
+import TextArea from "../../../components/textArea/TextArea";
 import Select from "../../../components/select/Select";
 import Button from "../../../components/button/Button";
 import { FREQUENCY} from "../utils/selectOptions";
@@ -18,7 +19,7 @@ function FormModal({ children, type, title, subject, desc, id }: { children: Rea
         time: '10:00'
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         // frequency === daily set repeat to null
         if (e.target.name === 'frequency' && e.target.value === 'daily') {
             setFormData({
@@ -106,7 +107,8 @@ function FormModal({ children, type, title, subject, desc, id }: { children: Rea
                     <div className="grid grid-cols-3 text-sm">
                         <p>Description</p>
                         <div className=" col-span-2">
-                            <Input placeholder="Description" classes="input-sm textarea" name="desc" onChangeHandler={handleChange} value={formData?.desc} />
+                            <TextArea placeholder="Description" classes="" name="desc" onChangeHandler={handleChange} value={formData?.desc} />
+                            {/* <Input placeholder="Description" classes="input-sm textarea" name="desc" onChangeHandler={handleChange} value={formData?.desc} /> */}
                         </div>
                     </div>
                     <div className="grid grid-cols-3 text-sm">
