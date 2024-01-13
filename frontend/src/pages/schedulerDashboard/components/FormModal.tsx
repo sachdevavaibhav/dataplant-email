@@ -4,14 +4,15 @@ import Select from "../../../components/select/Select";
 import Button from "../../../components/button/Button";
 import { FREQUENCY} from "../utils/selectOptions";
 import RenderRepeat from "./RenderRepeat";
-import { createSchedule } from "../../../utils/apiMethods";
+import { createSchedule, updateSchedule } from "../../../utils/apiMethods";
 
 
-function FormModal({ children }: { children: React.ReactNode }) {
+function FormModal({ children, type, title, subject, desc, id }: { children: React.ReactNode, type: string, title?: string, subject?: string, desc?: string, id: string }) {
+
     const [formData, setFormData] = useState({
-        title: '',
-        desc: '',
-        subject: '',
+        title: title ||  '',
+        desc: desc || '',
+        subject: subject ||'',
         frequency: 'daily',
         repeat: null,
         time: '10:00'
@@ -75,7 +76,13 @@ function FormModal({ children }: { children: React.ReactNode }) {
             repeat: formData.repeat,
             time: timeAsDateUTC.toISOString()
         };
-        const res = await createSchedule(schedule);
+        let res;
+        if (type === 'Edit') {
+            res = await updateSchedule(id, schedule);
+        }
+        else {
+            res = await createSchedule(schedule);
+        };
         if (res.statusCode === 200) {
             window.location.reload();
         }
@@ -88,7 +95,7 @@ function FormModal({ children }: { children: React.ReactNode }) {
         <div className="dropdown dropdown-bottom dropdown-end">
             {children}
             <div className="dropdown-content z-[1] menu p-4 shadow bg-white rounded-box w-96 font-nunito text-gray-dark">
-                <h2 className=" text-base font-semibold mb-3">Add Schedule</h2>
+                <h2 className=" text-base font-semibold mb-3">{type} Schedule</h2>
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-3 text-sm">
                         <p>Title</p>
@@ -123,7 +130,7 @@ function FormModal({ children }: { children: React.ReactNode }) {
                     </div>
                     <div className="flex justify-end gap-4">
                         <Button classes="btn-secondary text-gray-dark px-6 py-2 btn-sm font-semibold" onClick={handleCancel}>Cancel</Button>
-                        <Button classes="btn-primary text-white px-8 py-2 btn-sm font-semibold">Add</Button>
+                        <Button classes="btn-primary text-white px-8 py-2 btn-sm font-semibold">{type}</Button>
                     </div>
                 </form>
             </div>

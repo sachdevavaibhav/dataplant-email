@@ -1,6 +1,7 @@
 import editIcon from '../../../assets/icons/edit.svg';
 import deleteIcon from '../../../assets/icons/delete.svg';
 import DeleteModal from './DeleteModal';
+import FormModal from './FormModal';
 
 interface ITable {
     data: {
@@ -49,9 +50,11 @@ function Table({data: data=[], setSchedules, schedules}: ITable) {
                             <td>{item.schedule}</td>
                             <td>
                                 <div className="flex items-center gap-4">
-                                    <div role="button">
-                                        <img src={editIcon} alt="edit" />
-                                    </div>
+                                    <FormModal type='Edit' title={item.title} desc={item.desc} subject={item.subject} id={item.id}>
+                                        <button>
+                                            <img src={editIcon} alt="edit" />
+                                        </button>
+                                    </FormModal>
                                     <div role="button" onClick={() => (document?.getElementById(item.id) as HTMLDialogElement)?.showModal()}>
                                         <img src={deleteIcon} alt="delete" />
                                         <DeleteModal id={item.id} title={item.title} setSchedules={setSchedules} schedules={schedules} />

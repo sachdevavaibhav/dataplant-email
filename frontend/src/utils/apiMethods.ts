@@ -45,6 +45,22 @@ export const createSchedule = async (schedule: Schedule) => {
     }
 }
 
+export const updateSchedule = async (id: string, schedule: Schedule) => {
+    try {
+        const response = await fetch(`${BASE_URL}/schedules/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(schedule),
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const deleteSchedule = async (id: string) => {
     try {
         const response = await fetch(`${BASE_URL}/schedules/${id}`, {

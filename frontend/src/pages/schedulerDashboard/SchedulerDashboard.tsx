@@ -44,7 +44,7 @@ function SchedulerDashboard() {
                 <div className="px-8">
                     <div className="flex justify-between pt-5 mb-8">
                         <Input placeholder="Search" classes="w-96" icon={searchIcon} onChangeHandler={handleChange} />
-                        <FormModal>
+                        <FormModal type="Add">
                             <Button classes="btn-primary font-semibold text-white border-[#E4E4EE] px-6 py-0"
                                 onClick={() => console.log('clicked')}
                             >
