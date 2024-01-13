@@ -35,7 +35,7 @@ function FormModal({ children, type, title, subject, desc, id }: { children: Rea
         });
     };
 
-    const handleCancel = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleCancel = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setFormData({
             title: '',

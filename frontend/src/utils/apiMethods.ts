@@ -45,7 +45,7 @@ export const createSchedule = async (schedule: Schedule) => {
     }
 }
 
-export const updateSchedule = async (id: string, schedule: Schedule) => {
+export const updateSchedule = async (id: string | undefined, schedule: Schedule) => {
     try {
         const response = await fetch(`${BASE_URL}/schedules/${id}`, {
             method: 'PATCH',

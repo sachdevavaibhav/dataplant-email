@@ -2,7 +2,7 @@ interface IDayPicker {
     name: string,
     label: string,
     value: string,
-    onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void
 }
 
 import './dayPickerStyles.css';

@@ -2,6 +2,9 @@ interface IInput {
     placeholder: string,
     classes?: string,
     icon?: string | undefined,
+    name?: string,
+    type?: string,
+    value?: string,
     onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 

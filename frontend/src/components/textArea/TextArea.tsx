@@ -1,8 +1,9 @@
 interface ITextArea {
     placeholder: string,
     classes?: string,
-    onChangeHandler?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-
+    onChangeHandler?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void,
+    name?: string,
+    value?: string,
 }
 
 function TextArea({placeholder, classes, onChangeHandler, ...props}: ITextArea) {

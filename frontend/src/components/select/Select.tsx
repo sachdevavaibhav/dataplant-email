@@ -2,7 +2,9 @@ interface SelectProps {
     placeholder?: string,
     classes?: string,
     onChangeHandler?: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-    options: Array<{value: string, label: string}>
+    options: Array<{value: string, label: string}>,
+    name?: string,
+    value?: string,
 }
 
 function Select({placeholder, classes, onChangeHandler, options, ...props}: SelectProps) {
