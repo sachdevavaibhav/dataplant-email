@@ -18,7 +18,6 @@ function FormModal({ children }: { children: React.ReactNode }) {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        console.log(e.target.name ,e.target.value);
         // frequency === daily set repeat to null
         if (e.target.name === 'frequency' && e.target.value === 'daily') {
             setFormData({
@@ -82,6 +81,8 @@ function FormModal({ children }: { children: React.ReactNode }) {
         }
         console.log(res);
     };
+
+
 
     return(
         <div className="dropdown dropdown-bottom dropdown-end">

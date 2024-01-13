@@ -5,13 +5,13 @@ export const FREQUENCY = [
 ];
 
 export const REPEAT_WEEKLY = [
-    { value: 'mon', label: 'Monday' },
-    { value: 'tues', label: 'Tuesday' },
-    { value: 'wed', label: 'Wednesday' },
-    { value: 'thurs', label: 'Thursday' },
-    { value: 'fri', label: 'Friday' },
-    { value: 'sat', label: 'Saturday' },
-    { value: 'sun', label: 'Sunday' },
+    { value: 'mon', label: 'M' },
+    { value: 'tues', label: 'T' },
+    { value: 'wed', label: 'W' },
+    { value: 'thurs', label: 'T' },
+    { value: 'fri', label: 'F' },
+    { value: 'sat', label: 'S' },
+    { value: 'sun', label: 'S' },
 ];
 
 export const REPEAT_MONTHLY = [
