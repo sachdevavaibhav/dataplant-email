@@ -8,7 +8,7 @@ import RenderRepeat from "./RenderRepeat";
 import { createSchedule, updateSchedule } from "../../../utils/apiMethods";
 
 
-function FormModal({ children, type, title, subject, desc, id }: { children: React.ReactNode, type: string, title?: string, subject?: string, desc?: string, id: string }) {
+function FormModal({ children, type, title, subject, desc, id }: { children: React.ReactNode, type: string, title?: string, subject?: string, desc?: string, id?: string }) {
 
     const [formData, setFormData] = useState({
         title: title ||  '',

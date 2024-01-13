@@ -42,12 +42,10 @@ function SchedulerDashboard() {
             <div className="fixed -z-10 right-0 top-[50px] h-10 w-[calc(100vw-5rem)] bg-[#3C1E5A1A] border border-[#D8D2DE]"></div>
             <DashboardWrapper>
                 <div className="px-8">
-                    <div className="flex justify-between pt-5 mb-8">
-                        <Input placeholder="Search" classes="w-96" icon={searchIcon} onChangeHandler={handleChange} />
+                    <div className="flex flex-col md:flex-row justify-between pt-5 mb-8">
+                        <Input placeholder="Search" classes="w-96 mb-3" icon={searchIcon} onChangeHandler={handleChange} />
                         <FormModal type="Add">
-                            <Button classes="btn-primary font-semibold text-white border-[#E4E4EE] px-6 py-0"
-                                onClick={() => console.log('clicked')}
-                            >
+                            <Button classes="btn-primary font-semibold text-white border-[#E4E4EE] px-6 py-0">
                                 <div className="flex items-center gap-2 w-full relative">
                                     <img width={22} height={22} src={addIcon} alt="add" />
                                     <span>Add</span>
