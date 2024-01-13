@@ -43,7 +43,7 @@ function SchedulerDashboard() {
             <DashboardWrapper>
                 <div className="px-8">
                     <div className="flex flex-col md:flex-row justify-between pt-5 mb-8">
-                        <Input placeholder="Search" classes="w-96 mb-3" icon={searchIcon} onChangeHandler={handleChange} />
+                        <Input placeholder="Search" classes="w-96 mb-3 md:mb-0" icon={searchIcon} onChangeHandler={handleChange} />
                         <FormModal type="Add">
                             <Button classes="btn-primary font-semibold text-white border-[#E4E4EE] px-6 py-0">
                                 <div className="flex items-center gap-2 w-full relative">
