@@ -5,7 +5,7 @@ interface IInput {
     onChangeHandler?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-function Input({placeholder, classes, onChangeHandler, icon  ,...props}: IInput) {
+function Input({placeholder, classes, onChangeHandler, icon, ...props}: IInput) {
     classes = "input w-full bg-[#ffffff] placeholder:text-[#999999] text-gray-dark border border-[#E4E4EE] rounded focus:outline-none" + " " + classes;
     return (
         <div className="flex font-nunito relative">
